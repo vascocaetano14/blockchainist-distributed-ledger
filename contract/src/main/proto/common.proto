@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package pt.tecnico.blockchainist.contract;
+
+// The following option causes top-level messages, enums, and services to be
+// defined at the package level, rather than inside an outer class named after
+// the .proto file.
+option java_multiple_files = true;
+
+message Signature {
+  string signerIdentifier = 1;
+  bytes signatureValue = 2;
+}
+
+message CreateWalletRequest {
+  string userId = 1;
+  string walletId = 2;
+  Signature signature = 3;
+}
+
+message DeleteWalletRequest {
+  string userId = 1;
+  string walletId = 2;
+  Signature signature = 3;
+}
+
+message TransferRequest {
+  string src_userId = 1;
+  string src_walletId = 2;
+  string dst_walletId = 3;
+  uint64 value = 4;
+  Signature signature = 5;
+}
+
+message Transaction {
+  oneof operation {
+    CreateWalletRequest create_wallet = 1;
+    DeleteWalletRequest delete_wallet = 2;
+    TransferRequest transfer = 3;
+  }
+}

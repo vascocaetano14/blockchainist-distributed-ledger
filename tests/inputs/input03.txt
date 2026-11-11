@@ -1,0 +1,13 @@
+C Alice cA 0 0
+C Bob cB 0 0
+T BC bc cA 10 0 0
+T Alice cA cB 5 0 0
+S cA 0 0
+S cB 0 0
+S bc 0 0
+T Alice cA bc 5 0 0
+T Bob cB bc 5 0 0
+S bc 0 0
+E Alice cA 0 0
+E Bob cB 0 0
+X

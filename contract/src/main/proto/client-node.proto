@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package pt.tecnico.blockchainist.contract;
+
+import "common.proto";
+
+// The following option causes top-level messages, enums, and services to be
+// defined at the package level, rather than inside an outer class named after
+// the .proto file.
+option java_multiple_files = true;
+
+message CreateWalletResponse {}
+
+message DeleteWalletResponse {}
+
+message ReadBalanceRequest {
+  string walletId = 1;
+}
+
+message ReadBalanceResponse {
+  uint64 balance = 1;
+}
+
+message TransferResponse {}
+
+message GetBlockchainStateRequest {}
+
+message GetBlockchainStateResponse {
+  repeated Transaction transactions = 1;
+}
+
+service NodeService {
+  rpc CreateWallet(CreateWalletRequest) returns (CreateWalletResponse);
+  rpc DeleteWallet(DeleteWalletRequest) returns (DeleteWalletResponse);
+  rpc ReadBalance(ReadBalanceRequest) returns (ReadBalanceResponse);
+  rpc Transfer(TransferRequest) returns (TransferResponse);
+  rpc GetBlockchainState(GetBlockchainStateRequest) returns (GetBlockchainStateResponse);
+}
